@@ -1,111 +1,105 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* 🌑 MAIN BACKGROUND (entire page) */
+  --bg-main: #0f172a; /* Deep dark navy → gives a modern, premium dark UI */
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* 📦 CALCULATOR CONTAINER */
+  --bg-container: #1e293b; /* Slightly lighter than background → creates separation */
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* 🧾 PRIMARY TEXT (display numbers) */
+  --text-primary: #f8fafc; /* Almost white → high contrast for readability */
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
+  /* 🪶 SECONDARY TEXT (labels, hints) */
+  --text-secondary: #94a3b8; /* Muted gray → less attention than main text */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+  /* 🔢 NUMBER BUTTONS */
+  --btn-number: #334155; /* Neutral dark → keeps focus away from numbers */
+  --btn-number-hover: #475569; /* Slightly lighter → shows interaction on hover */
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  /* ➕ OPERATOR BUTTONS (+, -, ×, ÷) */
+  --btn-operator: #f59e0b; /* Bright orange → draws attention (important actions) */
+  --btn-operator-hover: #d97706; /* Darker orange → hover feedback */
+
+  /* 🟰 EQUALS BUTTON (main action) */
+  --btn-equals: #22c55e; /* Green → means "execute / confirm" */
+  --btn-equals-hover: #16a34a; /* Darker green → interaction feedback */
+
+  /* ❌ CLEAR BUTTON (destructive action) */
+  --btn-clear: #ef4444; /* Red → signals danger / reset */
+  --btn-clear-hover: #dc2626; /* Darker red → hover effect */
+
+  /* 🧊 BORDER / DIVIDERS */
+  --border: #475569; /* Subtle gray → structure without being distracting */
 }
 
 body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
+  align-items: center;
+  justify-content: center;
   margin: 0;
+  background: var(--bg-main);
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.calculator {
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-container);
+}
+.calculator .display {
+  height: 80px;
+  font-size: 30px;
+  color: var(--text-primary);
+  font-weight: 700;
+  text-align: right;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.calculator .buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 60px);
+  gap: 10px;
+}
+.calculator .buttons .btn {
+  height: 60px;
+  width: 60px;
+  font-size: 1.2rem;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  color: var(--text-primary);
+  background: var(--btn-number);
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+
+.calculator .buttons .btn:hover {
+  background: var(--btn-number-hover);
 }
+.calculator .buttons .btn:focus {
+  background: var(--btn-number-hover);
+}
+.calculator .buttons .control,
+.calculator .buttons .operator {
+  background: var(--btn-operator);
+}
+.calculator .buttons .control:hover,
+.calculator .buttons .operator:hover {
+  background: var(--btn-operator-hover);
+}
+.calculator .buttons .control:focus,
+.calculator .buttons .operator:focus {
+  background: var(--btn-operator-hover);
+}
+.calculator .buttons .equals{
+  background: var(--btn-equals);
+}
+.calculator .buttons .equals:hover{
+  background: var(--btn-equals-hover);
+}
+.calculator .buttons .equals:focus{
+  background: var(--btn-equals-hover);
+}
+
