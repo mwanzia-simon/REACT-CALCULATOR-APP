@@ -71,6 +71,7 @@ body {
   color: var(--text-primary);
   background: var(--btn-number);
   cursor: pointer;
+  border: 1px solid var(--border);
   transition: background 0.3s ease;
 }
 
